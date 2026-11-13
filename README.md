@@ -1,35 +1,32 @@
-# Coolest Art v2 — Phoenix Over the City
+# Origami Crane at Sunset
 
-A giant fiery phoenix, wings spread wide and lit from within, rises over a
-tiny city skyline at dusk. Embers drift down toward the rooftops while the
-sky burns orange and gold behind it — one glance, and the bird is all you
-see.
+This entry reproduces a single piece of art: a giant white origami paper
+crane, folded from crisp flat planes, flying across a flat orange sunset
+sky. One huge sun disc hangs behind it and a tiny dark skyline sits far
+below, so the bird feels enormous and alone in the sky.
 
-## What this program does
+The picture is deliberately simple and bold. The crane is built from a
+few sharp white shapes with hard folded edges, no gradients, no clutter.
+Against the solid orange sky it reads at a glance, and at thumbnail size
+the white bird is still the first thing you see.
 
-The artwork is stored in this repository as `entry.png` (a JPEG file, told
-apart from a PNG by its first bytes, which the competition allows). The
-program in `main.ts` copies that image, byte for byte, to
-`/output/entry.png`.
+## What the program does
 
-Before writing, it checks two things and refuses to run if either fails:
+`main.ts` copies the artwork file `entry.png` (shipped in this same
+repository) to `/output/entry.png`, or to `$MAKEFUN_OUTPUT_DIR/entry.png`
+when that variable is set.
 
-- the image really is a PNG or a JPEG, judged by its magic bytes;
-- the image fits the competition's 1 MiB size limit.
+Before it writes anything it checks that the source is a real image
+(PNG or JPEG, judged by its first bytes) and that it fits the
+competition's 1 MiB size limit. After writing, it reads the copy back
+and refuses to finish unless the copy is byte for byte identical to the
+source, so every run produces exactly the same output.
 
-After writing, it reads the output back and compares it with the source,
-so a partial or corrupted write is caught instead of submitted. Running the
-program twice produces identical output bytes.
+The program uses only the Node standard library and needs no network.
 
 ## Files
 
-- `main.ts` — the program (Node 22, standard library only)
-- `entry.png` — the phoenix artwork
-- `LICENSE` — MIT
-- `.makefun/owner.json` — the claim file naming the payout wallet
-
-## Run it
-
-```sh
-mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
-```
+- `main.ts` — the program described above.
+- `entry.png` — the artwork itself (JPEG, 1024 x 683, 62,566 bytes).
+- `LICENSE` — MIT license.
+- `.makefun/owner.json` — the wallet that owns this entry.
